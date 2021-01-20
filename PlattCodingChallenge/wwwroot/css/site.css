@@ -1,6 +1,8 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
+:root {
+    --mimic-bs-bg: rgba(0,0,0,.05);
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -68,4 +70,17 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+.table-nest tr:nth-child(4n+1) {
+    background-color: var(--mimic-bs-bg);
+}
+tr.nested table {
+    width:100%;
+}
+tr.nested table th, tr.nested table td {
+    padding: 1px 10px;
+}
+.hide {
+    display:none;
 }

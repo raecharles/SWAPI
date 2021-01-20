@@ -18,5 +18,7 @@ namespace PlattCodingChallenge.Models
 		public string LengthOfYear { get; set; }
 
 		public string FormattedPopulation => Population == "unknown" ? "unknown" : long.Parse(Population).ToString("N0");
+
+		public string Id { get; set; }
     }
 }

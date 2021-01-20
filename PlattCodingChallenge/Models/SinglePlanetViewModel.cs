@@ -22,5 +22,6 @@ namespace PlattCodingChallenge.Models
 		public string SurfaceWaterPercentage { get; set; }
 
 		public string Population { get; set; } = "0";
+		public int Id { get; set; }
 	}
 }

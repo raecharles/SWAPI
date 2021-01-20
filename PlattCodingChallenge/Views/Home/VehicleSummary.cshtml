@@ -14,21 +14,50 @@
                 <li>Total Number of Manufacturers: @Model.ManufacturerCount</li>
             </ul>
 
-            <table class="table table-striped">
+            <table class="table table-nest">
+                <caption>Star Wars Vehicles</caption>
                 <thead>
                     <tr>
-                        <td>Manufacturer Name</td>
-                        <td>Vehicle Count</td>
-                        <td>Average Cost</td>
+                        <th scope="col">Manufacturer Name</th>
+                        <th scope="col">Vehicle Count</th>
+                        <th scope="col">Average Cost</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var d in Model.Details)
                     {
                         <tr>
-                            <td>@d.ManufacturerName</td>
+                            <th scope="row">@d.ManufacturerName</th>
                             <td>@d.VehicleCount</td>
                             <td>@d.AverageCost.ToString("N2")</td>
+                        </tr>
+                        <tr class="nested hide">
+                            <td colspan="3">
+                                <table>
+                                    <caption>Vehicles by @d.ManufacturerName</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Model</th>
+                                            <th scope="col">Passengers</th>
+                                            <th scope="col">Max Speed</th>
+                                            <th scope="col">Class</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var v in d.Vehicles)
+                                        {
+                                        <tr>
+                                            <th scope="row">@v.Name</th>
+                                            <td>@v.Model</td>
+                                            <td>@v.Passengers</td>
+                                            <td>@v.MaxSpeed</td>
+                                            <td>@v.VehicleClass</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                            </table>
+                            </td>
                         </tr>
                     }
                 </tbody>

@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PlattCodingChallenge.Services;
+using PlattCodingChallenge.Helpers;
 
 namespace PlattCodingChallenge
 {
@@ -20,9 +22,13 @@ namespace PlattCodingChallenge
 
 		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
+		// **This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			//check service lifetime https://medium.com/volosoft/asp-net-core-dependency-injection-best-practices-tips-tricks-c6e9c67f9d96
+			services.AddTransient<IStarWarsService, StarWarsService>();
+			services.AddTransient<IViewMapperHelper, ViewMapperHelper>();
+			services.AddTransient<IHttpClientFactory, HttpClientFactory>();
 			services.AddControllersWithViews();
 		}
 
