@@ -27,7 +27,7 @@
                         <tr>
                             <td data-id="@planet.Id"><a href="/Home/GetPlanetById?planetid=@planet.Id">@planet.Name</a></td>
                             <td>@planet.FormattedPopulation</td>
-                            <td>@planet.Diameter</td>
+                            <td>@(planet.Diameter.ToString() == "-1" ? "unknown" : planet.Diameter.ToString())</td>
                             <td>@planet.Terrain</td>
                             <td>@planet.LengthOfYear</td>
                         </tr>

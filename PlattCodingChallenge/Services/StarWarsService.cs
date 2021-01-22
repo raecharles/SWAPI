@@ -18,6 +18,8 @@ namespace PlattCodingChallenge.Services
         Task<Person> GetPersonById(int id);
         Task<List<Person>> GetResidentsByPlanet(string planet);
         Task<List<Vehicle>> GetVehicles(string nameOrModel = "");
+        Task<List<Film>> GetFilms(string title = "");
+        Task<List<Starship>> GetStarships(string nameOrModel = "");
     }
     public class StarWarsService : IStarWarsService
     {
@@ -111,6 +113,7 @@ namespace PlattCodingChallenge.Services
             return resList;
         }
         /// <summary>
+        /// to do: spot check, test, validation
         /// Get all vehicles; continue requesting next page of planets (10) until no pages available in next property
         /// http://swapi.dev/api/vehicles/ <!-- api will redirect w/o trailing slash
         /// </summary>
@@ -129,6 +132,34 @@ namespace PlattCodingChallenge.Services
                 vehicleList.AddRange(veh.Results);
             }
             return vehicleList;
+        }
+        /// <summary>
+        /// 
+        /// Get all films; continue requesting next page of planets (10) until no pages available in next property
+        /// http://swapi.dev/api/films/ <!-- api will redirect w/o trailing slash
+        /// </summary>
+        /// <returns>Task, list of domain > film models</returns>
+        public async Task<List<Film>> GetFilms(string title = "")
+        {
+            var response = await Client.GetStringAsync("films/?search=" + title);
+            Films list = JsonConvert.DeserializeObject<Films>(response, Settings);
+           
+            return list.Results;
+        }
+        public async Task<List<Starship>> GetStarships(string nameOrModel = "")
+        {
+            List<Starship> shipList = new List<Starship>();
+            var response = await Client.GetStringAsync("starships/?search=" + nameOrModel);
+            Starships ships = JsonConvert.DeserializeObject<Starships>(response, Settings);
+            shipList.AddRange(ships.Results);
+            while (ships.Next != null)
+            {
+                string qs = new Uri(ships.Next).Query;
+                response = await Client.GetStringAsync("starships/" + qs);
+                ships = JsonConvert.DeserializeObject<Starships>(response, Settings);
+                shipList.AddRange(ships.Results);
+            }
+            return shipList;
         }
     }
 }

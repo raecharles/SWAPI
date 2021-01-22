@@ -11,7 +11,7 @@ namespace PlattCodingChallenge.Models
 		{
 			Residents = new List<ResidentSummary>();
 		}
-
+		public string Planet { get; set; }
 		public List<ResidentSummary> Residents { get; set; }
     }
 }

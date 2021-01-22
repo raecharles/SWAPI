@@ -1,0 +1,207 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Open+Sans&family=Montserrat:wght@900&display=swap');
+
+body {
+    background: rgb(20, 20, 20);
+    font-family: "Open Sans", arial, verdana, sans-serif;
+    color: #ccc;
+}
+#loader {
+    flex-basis:100%;
+}
+.loading {
+    /*border-top: 10px solid #914711;*/
+    border-top: 10px solid #f8f8f8;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin:auto;
+    transition:opacity 1s ease-in;
+}
+.loading.done {
+    opacity:0;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#movies {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    width: auto;
+    margin: auto;
+    text-align: center;
+}
+
+.movie {
+    flex: 0 0 30%;
+    /*max-width: 30%;*/
+    /*display:inline-block;*/
+    text-align: center;
+    margin: 20px auto;
+    font: 1.25em "Cormorant Garamond", serif;
+    text-transform: uppercase;
+    max-height: 350px;
+}
+
+.logo {
+    cursor: pointer;
+    position:relative;
+    z-index:500;
+}
+
+    .logo > img:first-child {
+        max-width: 80%;
+        width: 90%;
+    }
+
+.movie.active .logo {
+    animation: lightspeedOutIn 1s linear forwards;
+}
+
+.movie.fade .logo {
+    animation: lightspeedOut .5s ease-in forwards;
+}
+
+.movie.fade {
+    animation: fadeLogo .5s ease-in forwards;
+}
+
+.movie-icons {
+    display: flex;
+    justify-content: center;
+}
+
+    .movie-icons img {
+        max-width: 60px;
+        margin: 0 8px;
+    }
+    .movie.active .movie-icons img.icon.active {
+        filter: invert(1);
+    }
+
+.movie.active .movie-icons img {
+    filter: invert(.5);
+    transition: filter .5s ease-out;
+}
+
+    .movie.active .movie-icons img:hover {
+        filter: invert(1);
+    }
+
+@keyframes lightspeedOutIn {
+    0% {
+        transform: scale(1)
+    }
+
+    37.5% {
+        transform: scale(1.1)
+    }
+
+    50% {
+        transform: scale(0)
+    }
+
+    85% {
+        transform: scale(0)
+    }
+
+    100% {
+        transform: scale(1)
+    }
+
+    ;
+}
+
+@keyframes fadeLogo {
+    99% {
+        position: relative;
+    }
+
+    100% {
+        position: absolute;
+    }
+}
+
+@keyframes lightspeedOut {
+    0% {
+        transform: scale(1)
+    }
+
+    75% {
+        transform: scale(1.1)
+    }
+
+    100% {
+        transform: scale(0)
+    }    
+}
+
+p.title {
+    margin: 10px 0;
+}
+
+/* movie details */
+#movie-details {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    justify-content: center;
+    margin: auto;
+    flex-basis:100%;
+}
+
+    #movie-details.hide {
+        display: none;
+    }
+
+.card {
+    flex-basis: 20%;
+    margin: 20px;
+    min-width: 275px;
+    min-width: 250px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 15px;
+    background: #000;
+    opacity: .9;
+    box-shadow: 5px 5px 25px black;
+    animation:cardView .5s ease-in;
+}
+@keyframes cardView {
+    0% {opacity:0}
+    100% {opacity:1}
+}
+.card-title {
+    text-transform: uppercase;
+    text-align: center;
+    background: #f8f8f8;
+    margin: -8px -8px 15px -8px;
+    padding: 5px;
+    color: #914711;
+    font-family: "Montserrat", "Open Sans", sans-serif;
+}
+
+.card li {
+    list-style: none;
+    font-size: .9em;
+    text-align: right;
+    margin: 2px 0;
+}
+
+.card-label {
+    text-transform: uppercase;
+    font-weight: bold;
+    float: left;
+}
+
+footer.footer {
+    background:white;
+    opacity:.95;   
+}

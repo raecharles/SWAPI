@@ -1,0 +1,56 @@
+﻿@model PlattCodingChallenge.Models.AllFilmsViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>All Films</title>
+    <link rel="stylesheet" href="~/css/films.css" />
+    <link rel="stylesheet" href="~/css/sw-scroll.css" />
+</head>
+<body>
+    
+    <div>
+        <h3>Star Wars: All Films</h3>
+        <section id="movies">
+            @foreach (var film in Model.Films)
+            {
+<div class="movie" data-director="@film.Director" data-producer="@film.Producer" data-release="@film.ReleaseDate">
+    <div class="logo">
+        <img src="~/img/sw-logo.png" alt="Star Wars" />
+        <p class="title">Episode @film.EpisodeId<br />@film.Title</p>
+        <div class="movie-icons">
+            <img class="icon character-icon" src="~/img/Boba-Fett-icon.png" alt="@film.Title characters" title="View Characters" data-ids="@film.Characters" />
+            <img class="icon planet-icon" src="~/img/Death-Star-icon.png" alt="@film.Title planets" title="View Planets" data-ids="@film.Planets" />
+            <img class="icon spaceships-icon" src="~/img/Millennium-Falcon-icon.png" alt="@film.Title starships" title="View Starships" data-ids="@film.Starships" />
+            <img class="icon vehicles-icon" src="~/img/landspeeder-ben-davis-the-noun-project.png" title="View Vehicles - icon created by ben davis the noun project" alt="@film.Title vehicles" data-ids="@film.Vehicles" />
+        </div>
+
+    </div>
+    <div class="intro hide">
+        <p id="start">A long time ago in galaxy far, far away&hellip;</p>
+        <div id="titles">
+            <div id="titlecontent">
+                <p class="center">EPISODE @film.EpisodeId<br />@film.Title</p>
+                <p>@film.OpeningCrawl</p>
+            </div>
+        </div>
+    </div>
+</div><!--/movie-->            }
+        <div id="loader"><div class="loading done"></div></div>
+            <section id="movie-details" class="hide">
+                <div class="card">
+                    <p class="card-title">Clone turbo tank</p>
+                    <ul>
+                        <li><span class="card-label">Make</span> HAVw A6 Juggernaut</li>
+                        <li><span class="card-label">Passengers</span> 300</li>
+                        <li><span class="card-label">Max Speed</span> 600</li>
+                        <li><span class="card-label">Class</span> wheeled walker</li>
+                    </ul>
+                </div>
+            </section><!--/movie-details-->
+        </section><!--/movies-->
+    </div>
+    <!-- sw sroll text: https://www.sitepoint.com/css3-starwars-scrolling-text/ -->
+</body>
+</html>
