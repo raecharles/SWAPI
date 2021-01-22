@@ -5,6 +5,9 @@ body {
     font-family: "Open Sans", arial, verdana, sans-serif;
     color: #ccc;
 }
+h3#heading {
+    cursor: pointer;
+}
 #loader {
     flex-basis:100%;
 }

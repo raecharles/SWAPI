@@ -68,7 +68,7 @@ document.addEventListener('click', (event) => {
 
         
     }
-    if (document.querySelector('.movie.active') !== null && movie == null) {
+    if ((document.querySelector('.movie.active') !== null && movie == null) || event.target.matches('#heading')) {
         movies.forEach(x => x.classList = 'movie');
         document.querySelector('.intro.playIntro').classList = 'intro hide';
         details.classList = 'hide';
@@ -84,6 +84,22 @@ document.addEventListener('click', (event) => {
         });
     }
 });
+
+document.onkeydown = function (e) {
+    e = e || window.event;
+    var isEsc = false;
+    if ("key" in e) {
+        isEsc = (e.key === "Escape" || e.key === "Esc");
+    } else {
+        isEsc = (e.keyCode === 27);
+    }
+    if (isEsc) {
+        movies.forEach(x => x.classList = 'movie');
+        document.querySelector('.intro.playIntro').classList = 'intro hide';
+        details.classList = 'hide';
+        icons.forEach(x => x.classList.remove('active'));
+    }
+};
 
 function createCard(obj) {
     //console.log(obj);
